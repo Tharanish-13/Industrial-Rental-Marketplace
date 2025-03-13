@@ -1,5 +1,6 @@
 /* Dashboard.css */
 
+
 .dashboard-container {
     display: flex;
     min-height: 100vh;
@@ -28,38 +29,50 @@
     margin-bottom: 30px;
   }
   
-  /* Increase size of stat card label boxes */
-.stat-card {
-  padding: 20px; /* Increase padding to make the box bigger */
-  font-size: 18px; /* Increase font size for better readability */
-  width: 250px; /* Adjust width if you need more space for the label */
-  height: 140px; /* Optional: adjust height to match new padding/spacing */
-  background-color: #ffffff; /* Background color to distinguish label box */
-  border-radius: 10px; /* Optional: rounded corners for the label box */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optional: add shadow for visual appeal */
-  display: flex;
-  flex-direction: column;
-}
+  .stat-card {
+    padding: 20px; /* Increase padding to make the box bigger */
+    font-size: 18px; /* Increase font size for better readability */
+    width: 250px; /* Adjust width if you need more space for the label */
+    height: 130px; /* Adjust height for label, value, and image */
+    background-color: #ffffff; /* Background color to distinguish label box */
+    border-radius: 10px; /* Rounded corners for the label box */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for visual appeal */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space between label, value, and image */
+    position: relative; /* Needed for absolute positioning of image */
+  }
+  
+  .stat-card img {
+    position: absolute; /* Position the image in relation to the card */
+    top: 10px; /* Adjust the distance from the top */
+    right: 30px; /* Adjust the distance from the right */
+    width: 50px; /* Size of the image */
+    height: 50px; /* Size of the image */
+    object-fit: contain; /* Ensure the image scales proportionally */
+  }
+  
+  .My-orders-icon {
+    width: 60px; /* Adjust the width as needed */
+    height: 60px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensures the image fits properly */
+    border-radius: 8px; /* Optional: adds rounded corners */
+    margin-top: -90px;
+    margin-left: 180px;
+  }
+  
 
-.stat-label {
-  font-size: 14px;
-  color: #555;
-}
-
-.stat-value {
-  font-size: 24px;
-  font-weight: bold;
-  color: #000;
-  margin-top: 10px; /* Add some space between the label and the value */
-}
-
-.stat-card img {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px; /* Adjust size of the image */
-  height: 30px; /* Adjust size of the image */
-}
+  .stat-label {
+    font-size: 20px;
+      
+  }
+  
+  .stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #555;
+    margin-top: 10px; /* Space between the label and the value */
+  }
   
   .dashboard-body {
     display: grid;
@@ -69,25 +82,38 @@
   
   .sales-details {
     background: #f4f4f8;
+    width: 1180px;
     padding: 15px;
-    max-height: 200px;
+    max-height: 350px;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   .top-products{
     background: #f4f4f8;
     padding: 15px;
     border-radius: 8px;
-    max-width: 400px;
-    margin-top: 250px;
-    margin-left: -600px;
+    max-width: 600px;
+    margin-top: 400px;
+    margin-left: -1230px;
   }
   .total-sales{
     background: #f4f4f8;
     padding: 15px;
     border-radius: 8px;
-    margin-top: 250px;
     max-width: 250px;
-    margin-left: -200px;
+    margin-top: -300px;
+    margin-left: 800px;
+    height: 200px;
+  }
+
+  .My-orders{
+    background: #f4f4f8;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 250px;
+    margin-top: 450px;
+    margin-left: -450px;
+    height: 200px;
   }
   
   .sales-graph {
@@ -124,6 +150,55 @@
     font-weight: bold;
     color: #4e73df;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 50px;
+  }
+
+  .My-orders h3 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  .My-orders-count {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4e73df;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .traffic-chart {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .traffic-chart h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .traffic-chart .sub-header {
+    color: #007bff;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  
+  .recharts-default-tooltip {
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-size: 12px;
+  }
+  
+  .recharts-legend-item {
+    font-size: 14px;
   }
   

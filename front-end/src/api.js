@@ -262,6 +262,18 @@ export const createProduct = async (productData) => {
   }
 };
 
+// Fetch product details
+export const fetchProductDetails = async () => {
+  try {
+    const response = await api.get('/products/details');
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching product details:", error.message);
+    throw new Error(error.response?.data?.message || "Error fetching product details.");
+  }
+};
+
+
 // Function to update a product
 export const updateProduct = async (productId, formData) => {
   if (!productId) {
@@ -378,5 +390,19 @@ export const getAllFavorites = async () => {
   } catch (error) {
     console.error("Error fetching favorites:", error);
     throw new Error(error?.response?.data?.message || "Error fetching favorites");
+  }
+};
+
+export const fetchProductsByCategory = async (category, excludeProductId) => {
+  try {
+    const response = await fetch(`http://localhost:5000/api/products/category/${category}`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const products = await response.json();
+    return products;
+  } catch (error) {
+    console.error('Error fetching products by category:', error);
+    throw error;
   }
 };

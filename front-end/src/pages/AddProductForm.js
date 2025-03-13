@@ -225,15 +225,28 @@ function AddProductForm({ onBack, onProductAdded, product }) {
           <div className="form-group">
             <label>Product Category</label>
             <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-              <option value="">Select Category</option>
-              <option value="Electric">Electric</option>
-              <option value="Manual">Manual</option>
+            <option value="">Select Category</option>
+            <option value="Electric">Electric</option>
+            <option value="Manual">Manual</option>
+            <option value="Hydraulic">Hydraulic</option>
+            <option value="Pneumatic">Pneumatic</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Battery Operated">Battery Operated</option>
+            <option value="Gasoline">Gasoline</option>
             </select>
             <label>Subcategory</label>
             <select value={subCategory} onChange={(e) => setSubCategory(e.target.value)} required>
-              <option value="">Select Subcategory</option>
-              <option value="Stacker">Stacker</option>
-              <option value="Forklift">Forklift</option>
+            <option value="">Select Subcategory</option>
+            <option value="Stacker">Stacker</option>
+            <option value="Forklift">Forklift</option>
+            <option value="Pallet Jack">Pallet Jack</option>
+            <option value="Tow Tractor">Tow Tractor</option>
+            <option value="Reach Truck">Reach Truck</option>
+            <option value="Order Picker">Order Picker</option>
+            <option value="Scissor Lift">Scissor Lift</option>
+            <option value="Concrete Hammer">Concrete Hammer</option>
+            <option value="Driller">Driller</option>
+            <option value="Mixer">Mixer</option>
             </select>
           </div>
 

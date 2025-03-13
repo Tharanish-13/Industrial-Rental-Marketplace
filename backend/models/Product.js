@@ -21,7 +21,8 @@ const productSchema = new mongoose.Schema({
       value: { type: String, required: true }
     }
   ],
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  supplierContact: { type: String, required: true } // Added supplier contact field
 }, {
   timestamps: true
 });

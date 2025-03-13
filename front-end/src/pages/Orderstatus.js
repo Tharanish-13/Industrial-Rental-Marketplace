@@ -5,6 +5,7 @@ import '../styles/Orderstatus.css';
 const OrderDetails = ({ order, onClose }) => {
   const handleAction = (newStatus) => {
     order.status = newStatus; // Update status dynamically
+    onClose();
   };
 
   const renderButtonsByStatus = () => {
@@ -312,7 +313,7 @@ const Orders = () => {
                                     {order.status}
                                 </span>
                             </td>
-                            <td><button className="details-button" onClick={() => handleViewDetails(order)}>View Details</button></td>
+                            <td><button className="details-button-order" onClick={() => handleViewDetails(order)}>View Details</button></td>
                         </tr>
                     ))}
                 </tbody>

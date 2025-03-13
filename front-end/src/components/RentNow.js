@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import RelatedProducts from '../components/RelatedProducts';
+import SimilarProductsSection from '../components/SimilarProducts';
 import '../styles/Rentnow.css';
-import { fetchProduct, fetchAddresses, createRentalRequest } from '../api';
+import { fetchProduct, fetchAddresses, createRentalRequest} from '../api';
 import DatePicker from "react-datepicker";
 import { FaCalendarAlt } from 'react-icons/fa';
 import "react-datepicker/dist/react-datepicker.css";
@@ -27,7 +28,7 @@ const RentNow = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const isLoggedIn = !!sessionStorage.getItem('authToken');
   const [availability] = useState({
-    available: [], // Example available dates
+    available: [],
     unavailable: ["2024-12-20", "2024-12-21","2024-12-22","2024-12-23"]});
 
   useEffect(() => {
@@ -68,13 +69,7 @@ const RentNow = () => {
   loadAddresses();
 }, [id]);
 
-const isAvailable = (date) => {
-  // Check if the date is available
-  return !availability.unavailable.includes(date.toISOString().split("T")[0]);
-};
-
 const isUnavailable = (date) => {
-  // Check if the date is unavailable
   return availability.unavailable.includes(date.toISOString().split('T')[0]);
 };
 
@@ -85,8 +80,6 @@ const handleAddressChange = (e) => {
     if (isLoggedIn) {
       setIsPopupVisible(true);
     } else {
-      // You can handle the case where the user is not logged in, 
-      // such as showing a login prompt or redirecting to the login page.
       alert("Please log in to rent the product.");
     }
   };
@@ -108,14 +101,20 @@ const handleAddressChange = (e) => {
   const handleRentNow = async () => {
     const requestData = {
       productId: selectedProductId, // ID of the product to be rented
+      customerId: sessionStorage.getItem('userId'), // Assuming userId is stored in sessionStorage
+      supplierId: product.supplierId, // Assuming supplierId is part of the product data
+      category: product.category,
       selectedAddress,
+      phoneNumber: sessionStorage.getItem('phoneNumber'), // Assuming phoneNumber is stored in sessionStorage
       fromDate,
       fromTime,
       endDate,
       endTime,
+      orderDate: new Date().toISOString().split('T')[0], // Current date
     };
   
     try {
+      console.log("Sending rental request with data:", requestData); // Debugging log
       const response = await createRentalRequest(requestData);
       console.log("Rental request sent successfully:", response);
       setIsSuccessPopupVisible(true); // Show success popup
@@ -506,7 +505,7 @@ const handleAddressChange = (e) => {
   )}
 </p>
 <p>USD (incl. of all taxes)</p>
-
+<p className="supplier-contact">Supplier Contact: {product.supplierContact}</p> {/* Added supplier contact */}
 <div className="price-button-container">
               
               <p className="product-price">₹{product.price} / Day</p>
@@ -542,104 +541,8 @@ const handleAddressChange = (e) => {
 
         {/* Tab content */}
         <div className="tab-content">{tabContent[activeTab]}</div>
-
-        {/* Similar Products Comparison */}
-        <section className="similar-products">
-          <h3>Compare with similar products</h3>
-          <div className="products-row">
-            <div className="product-card-com">
-              <img src="/home-slide4.jpg" alt="Similar product" />
-              <h4>{product.name}</h4>
-              <div className="txt">
-                <p>{product.location}</p>
-                <p>{product.rentaldays}</p>
-              </div>
-              <div className="Price"><p className="price">₹95.00</p></div>
-              <button className="rent-now-bttn">Rent Now</button>
-              <br />
-              <div className="specifications">
-                <p>Power: 1200W</p>
-                <p>Weight: 3.5 kg</p>
-                <p>Dimensions: 30 x 12 x 9 cm</p>
-                <p>Material: High-Strength Steel</p>
-                <p>Warranty: 1 Year</p>
-              </div>
-            </div>
-            <div className="product-card-com">
-              <img src="/home-slide5.jpg" alt="Another product" />
-              <h4>{product.name}</h4>
-              <div className="txt">
-                <p>{product.location}</p>
-                <p>{product.rentaldays}</p>
-              </div>
-              <div className="Price"><p className="price">₹95.00</p></div>
-              <button className="rent-now-bttn">Rent Now</button>
-              <br />
-              <div className="specifications">
-                <p>Power: 1200W</p>
-                <p>Weight: 3.5 kg</p>
-                <p>Dimensions: 30 x 12 x 9 cm</p>
-                <p>Material: High-Strength Steel</p>
-                <p>Warranty: 1 Year</p>
-              </div>
-            </div>
-            <div className="product-card-com">
-              <img src="/home-slide4.jpg" alt="Another product" />
-              <h4>{product.name}</h4>
-              <div className="txt">
-                <p>{product.location}</p>
-                <p>{product.rentaldays}</p>
-              </div>
-              <div className="Price"><p className="price">₹95.00</p></div>
-              <button className="rent-now-bttn">Rent Now</button>
-              <br />
-              <div className="specifications">
-                <p>Power: 1200W</p>
-                <p>Weight: 3.5 kg</p>
-                <p>Dimensions: 30 x 12 x 9 cm</p>
-                <p>Material: High-Strength Steel</p>
-                <p>Warranty: 1 Year</p>
-              </div>
-            </div>
-            <div className="product-card-com">
-              <img src="/home-slide5.jpg" alt="Another product" />
-              <h4>{product.name}</h4>
-              <div className="txt">
-                <p>{product.location}</p>
-                <p>{product.rentaldays}</p>
-              </div>
-              <div className="Price"><p className="price">₹95.00</p></div>
-              <button className="rent-now-bttn">Rent Now</button>
-              <br />
-              <div className="specifications">
-                <p>Power: 1200W</p>
-                <p>Weight: 3.5 kg</p>
-                <p>Dimensions: 30 x 12 x 9 cm</p>
-                <p>Material: High-Strength Steel</p>
-                <p>Warranty: 1 Year</p>
-              </div>
-            </div>
-            <div className="product-card-com">
-              <img src="/home-slide5.jpg" alt="Another product" />
-              <h4>{product.name}</h4>
-              <div className="txt">
-                <p>{product.location}</p>
-                <p>{product.rentaldays}</p>
-              </div>
-              <div className="Price"><p className="price">₹95.00</p></div>
-              <button className="rent-now-bttn">Rent Now</button>
-              <br />
-              <div className="specifications">
-                <p>Power: 1200W</p>
-                <p>Weight: 3.5 kg</p>
-                <p>Dimensions: 30 x 12 x 9 cm</p>
-                <p>Material: High-Strength Steel</p>
-                <p>Warranty: 1 Year</p>
-              </div>
-            </div>
-          </div>
-        </section>
         </main>
+        <SimilarProductsSection productId={product._id} category={product.subCategory} />
         <p className="rlt">Related Products</p>
         <RelatedProducts />
     </div>

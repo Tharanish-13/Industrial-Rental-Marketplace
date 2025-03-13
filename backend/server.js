@@ -20,7 +20,7 @@ if (!process.env.MONGO_URI) {
 
 // CORS configuration
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000','http://localhost:3001'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 };
@@ -57,12 +57,14 @@ const addressRoutes = require('./routes/addressRoutes');
 const favoritesRoutes = require('./routes/favoriteRoutes');
 const bankroutes = require('./routes/BankRoutes')
 const personalDetailsRoutes = require('./routes/personalDetailsRoutes');
+const adminRoutes = require('./routes/admin-route');
 app.use('/api/products', productRoutes); // Keep this for product-related routes
 app.use('/api/users', userRoutes);
 app.use('/api/addresses', addressRoutes);
 app.use('/api/favorites', favoritesRoutes);
 app.use('/api/bank-details',bankroutes);
 app.use('/api/personal-details', personalDetailsRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Home route
 app.get('/', (req, res) => {

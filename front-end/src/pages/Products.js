@@ -94,12 +94,23 @@ const EquipmentPage = () => {
   };
 
   const filteredEquipmentData = equipmentData.filter((item) => {
-    const matchesLocation = locationFilter ? item.location.toLowerCase().includes(locationFilter.toLowerCase()) : true;
-    const matchesCategory = categoryFilter ? item.type.toLowerCase().includes(categoryFilter.toLowerCase()) : true;
-    const matchesRentalDays = rentalDaysFilter ? parseInt(item.rentaldays.match(/\d+/)) >= rentalDaysFilter : true;
+    const matchesLocation = locationFilter
+      ? item.location?.toLowerCase().includes(locationFilter.toLowerCase())
+      : true;
+  
+    const matchesCategory = categoryFilter
+      ? item.subCategory?.toLowerCase().includes(categoryFilter.toLowerCase())
+      : true;
+  
+    const matchesRentalDays = rentalDaysFilter
+      ? parseInt(item.rentalDays || "0", 10) >= parseInt(rentalDaysFilter, 10)
+      : true;
+  
     const matchesPrice = item.price <= priceFilter;
+  
     return matchesLocation && matchesCategory && matchesRentalDays && matchesPrice;
   });
+  
 
   return (
     <div className="equipment-page">
@@ -118,7 +129,14 @@ const EquipmentPage = () => {
           <option value="">Select Category</option>
           <option value="Driller">Driller</option>
           <option value="Mixer">Mixer</option>
-          {/* Add other categories as needed */}
+          <option value="Stacker">Stacker</option>
+            <option value="Forklift">Forklift</option>
+            <option value="Pallet Jack">Pallet Jack</option>
+            <option value="Tow Tractor">Tow Tractor</option>
+            <option value="Reach Truck">Reach Truck</option>
+            <option value="Order Picker">Order Picker</option>
+            <option value="Scissor Lift">Scissor Lift</option>
+            <option value="Concrete Hammer">Concrete Hammer</option>
         </select>
         
         <div className="filter-option">Minimum Rental Days</div>

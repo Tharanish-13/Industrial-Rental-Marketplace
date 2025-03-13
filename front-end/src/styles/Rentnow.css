@@ -287,34 +287,6 @@
     font-style: italic; /* Added italics for a different visual treatment */
   }
 
-  .specifications {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .specifications li {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px;
-    background-color: #f9f9f9;
-    margin-bottom: 8px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-
-  .specifications li:hover {
-    background-color: #f1f1f1; /* Subtle hover effect */
-  }
-
-  .specifications .spec-key {
-    font-weight: bold;
-    color: #007bff;
-  }
-
-  .specifications .spec-value {
-    color: #555;
-  }
-
   .reviews {
     background-color: #f9f9f9;
     border-radius: 8px;
@@ -345,17 +317,7 @@
     cursor: pointer;
   }
 
-    
-    .similar-products {
-      margin-top: 2rem;
-      margin-left: 20px;
-    }
-
-    .similar-products h3{
-      font-size: 20px;
-      margin-bottom: 30px;
-    }
-    
+  
     .products-row {
       margin-left: -100px;
       display: flex;
@@ -368,49 +330,6 @@
       background-color: rgb(245, 230, 237);
     }
     
-    .product-card-com {
-      max-width: 200px;
-      height: 500px;
-      border-radius: 8px;
-      margin: 0 0.5rem;
-    }
-    
-    .product-card-com img {
-      max-width: 100%;
-      max-height: auto;
-      border-radius: 8px;
-    }
-    
-  .product-card-com h4{
-    top: 0;
-    font-size: 15px;
-    margin-top: 8px;
-  }
-
-  .txt p{
-    font-size: 13px;
-    margin-left: 10px;
-  }
-
-  .Price p{
-    font-size:15px;
-    font-weight: bolder;
-    margin-top: 30px;
-    margin-left: 15px;
-    color: #000000;
-  }
-    
-    .rent-now-bttn {
-      position: absolute;
-      padding: 0.5rem 0.7rem;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-left: 110px;
-      margin-top: -40px;
-    }
     
     .product-card button:hover {
       background-color: #0056b3;
